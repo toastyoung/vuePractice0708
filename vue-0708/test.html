@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- vue中插值语法为双大括号 -->
+      <h1>{{ msg }}</h1>
+
+      <!-- 双线数据绑定   v-model="表达式"   model(数据层) <==> view(视图层) -->
+      <input type="text" v-model="msg" /> <br />
+
+      <!-- 单项数据绑定 v-bind:value="表达式"(简写：value="表达式") model(数据层)=>view(视图层) -->
+      <!-- <input type="text" v-bind:value="msg" /> -->
+      <input type="text" :value="msg" /> <br />
+
+      <!-- 绑定事件监听： v-on:click="函数名"(简写：@click="函数名") -->
+      <!-- <input type="text" v-on:input="vueFn" /> -->
+      <input type="text" @input="vueFn" />
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      const msg = 'cocacole'
+
+      
+      new Vue({// Vue配置对象
+        el: '#app', //获取dom元素 解析其子元素 底层是document.querySelect方法
+
+        // 定义vue中使用的数据
+        data: {
+          msg,
+        },
+        //定义vue中的方法 
+        methods: {
+          vueFn() {
+            console.log(111)
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
