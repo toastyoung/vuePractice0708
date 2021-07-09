@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h3>1.绑定监听</h3>
+      <button @click="handleClick">不传参数</button>
+      <button @click="handleClick1(1,2,3)">传递参数</button>
+      <button @click="handleClick2(1,2,3,$event)">传递event事件对象</button>
+      <button @click="count++">回调函数只有一条语句 可以直接写 不用定义</button>
+      <p>{{count}}</p>
+
+      <h3>2.事件修饰符</h3>
+      <a href="http://www.baidu.com" @click="handleClick3">跳转百度1</a>
+      <a href="http://www.baidu.com" @click.prevent="handleClick4">阻止跳转2</a>
+      <a href="http://www.baidu.com" @click.prevent>阻止跳转3</a>
+      <div
+        style="width: 100px; height: 100px; background-color: aqua"
+        @click="handleClick5"
+      >
+        <h3 @click.stop>阻止冒泡</h3>
+      </div>
+
+      <h3>3.按键修饰符</h3>
+      <input type="text" @keyup="handleKeyup1" />
+      <input type="text" @keyup.13="handleKeyup2" />
+      <input type="text" @keyup.enter="handleKeyup2" />
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data: {
+          count: 0,
+        },
+        methods: {
+          handleClick() {
+            console.log(111)
+          },
+          handleClick1(...arguments) {
+            console.log(arguments)
+          },
+          handleClick2(...arg) {
+            console.log(arg)
+          },
+          handleClick3(e) {
+            e.preventDefault()
+          },
+          handleClick4() {},
+          handleClick5() {
+            console.log(111)
+          },
+          handleKeyup1(e) {
+            if (e.keyCode === 13) {
+              console.log(111)
+            }
+          },
+          handleKeyup2() {
+            console.log(111)
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
