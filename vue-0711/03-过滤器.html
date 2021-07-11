@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h2>显示格式化的日期时间</h2>
+      <!-- 两种方法 -->
+      <p>{{ date | formatDate }}</p>
+      <p>{{ time }}</p>
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.10.5/dayjs.min.js"></script>
+    <script src="../js/vue.js"></script>
+    <script>
+      /*
+        1.理解过滤器
+          功能:对要显示的数据进行特定格式化后在显示
+          注意:并没有改变原本的数据 而是产生新的对应的数据
+
+        2.编码
+          a.定义过滤器
+            Vue.filter(filterName,function(){value[arg1,arg2,...]})
+            进行一定的数据处理
+            return newValue
+          b.使用过滤器
+               <div>{{ myData | filterData }}</div>
+               <div>{{ myData | filterData(arg) }}</div>
+      */
+      console.log(Date.now());
+      new Vue({
+        el: "#app",
+        data: {
+          date: 1626013515724,
+        },
+        filters: {
+          formatDate(str) {
+            return dayjs(str).format("YYYY-MM-DD HH:mm:ss");
+          },
+        },
+        computed: {
+          time() {
+            return dayjs(this.date).format("YYYY-MM-DD HH:mm:ss");
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      [v-cloak] {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p v-cloak ref="cloak">{{ msg }}</p>
+      <p v-pre>{{ msg }}</p>
+      <p v-once ref="count">{{count}}</p>
+      <button @click="count++">按钮</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      // v-cloak 防止闪现表达式 与css配合 [v-cloak] { display:none}
+      //   v-pre 跳过解析 不解析
+      //   v-once 只解析一次
+      new Vue({
+        el: '#app',
+        data: {
+          msg: '阳光灿烂的日子',
+          count: 0,
+        },
+        mounted() {
+          console.log(this.$refs.count)
+          console.log(this.$refs.cloak)
+        },
+      })
+    </script>
+  </body>
+</html>

@@ -51,12 +51,12 @@
       */
 
       new Vue({
-        el: '#app',
+        el: "#app",
         // 数据代理：将data、computed、methods数据挂载到this上，用户可以直接通过this访问数据
         // 简单方便
         data: {
-          firstName: '李',
-          lastName: '沛华',
+          firstName: "李",
+          lastName: "沛华",
           count: 0,
           person: {
             age: 20,
@@ -73,30 +73,30 @@
             // 特点: 一旦里面依赖的数据发生变化，就会重新计算
             // 特点: 有缓存
             // console.log(this);
-            return this.firstName + ' ' + this.lastName
+            return this.firstName + " " + this.lastName;
           },
           // 2. 可读可写的计算属性
           fullName2: {
             get() {
               // 当你读取fullName2的值，会调用get方法，get方法的返回值就是fullName2的值
-              return this.firstName + ' ' + this.lastName
+              return this.firstName + " " + this.lastName;
             },
             set(val) {
               // 当你设置fullName2的值，会调用set方法，set方法的决定如何更新
               // val就是更新的值
-              const [firstName, lastName] = val.split(' ')
-              this.firstName = firstName
-              this.lastName = lastName
+              const [firstName, lastName] = val.split(" ");
+              this.firstName = firstName;
+              this.lastName = lastName;
             },
           },
         },
         methods: {
           update() {
-            console.log(this)
-            this.count++
+            console.log(this);
+            this.count++;
           },
           updatePerson() {
-            this.person.age++
+            this.person.age++;
             // this.person = { age: 111 };
           },
         },
@@ -104,12 +104,11 @@
           // 定义属性，监视属性
           // 作用：监视已存在的属性，一旦这个属性发生变化，就会触发函数
           // firstName(newVal, oldVal) {
-          //   console.log(newVal, oldVal);
           // },
 
           firstName: {
             handler(newVal, oldVal) {
-              console.log(newVal, oldVal)
+              console.log(newVal, oldVal);
             },
             immediate: true, // 一上来就触发
           },
@@ -117,13 +116,13 @@
           // 监视属性只能监视，属性的值的变化
           person: {
             handler(newVal, oldVal) {
-              console.log(newVal, oldVal)
+              console.log(newVal, oldVal);
             },
             deep: true, // 深度监视（对象属性的变化）
             immediate: true,
           },
         },
-      })
+      });
     </script>
   </body>
 </html>

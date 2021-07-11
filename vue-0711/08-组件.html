@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>组件</title>
+  </head>
+  <body>
+    <div id="app">
+      <my-component></my-component>
+      <my-component></my-component>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      // 1. 定义组件
+      // const MyComponent = Vue.extend({
+      //   // 组件配置对象 data mehtods computed watch 生命周期函数等
+      //   data() {
+      //     // 定义组件，data必须写成函数形式
+      //     return {
+      //       count: 0,
+      //     };
+      //   },
+      //   methods: {
+      //     handleClick() {
+      //       this.count++;
+      //     },
+      //   },
+      //   // 组件html
+      //   // 必须有根标签
+      //   template:
+      //     "<div><p>{{count}}</p><button @click='handleClick'>update</button></div>",
+      // });
+
+      // 2.注册组件
+      // 全局注册
+      // Vue.component("my-component", MyComponent);
+      new Vue({
+        el: "#app",
+        // 局部注册
+        components: {
+          MyComponent: {
+            data() {
+              return {
+                count: 0,
+              };
+            },
+            methods: {
+              handleClick() {
+                this.count++;
+              },
+            },
+            template:
+              "<div><p>{{count}}</p><button @click='handleClick'>update</button></div>",
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

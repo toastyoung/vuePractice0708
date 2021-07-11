@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>响应式</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <p>{{a}}</p>
+      <p>{{count}}</p>
+      <button @click="count++">按钮</button>
+      <button @click="a++">按钮</button> -->
+
+      <!-- <ul>
+        <li v-for="value, key in person" :key="key">{{key}} {{value}}</li>
+      </ul>
+      <button @click="update1">update</button> -->
+
+      <ul>
+        <li v-for="person in persons" :key="person.id">{{person.name}}</li>
+      </ul>
+      <button @click="update2">update</button>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script type="text/javascript">
+      // 响应式：更新数据时，数据会发生变化，同时用户界面也会发生变化
+      // 在Vue什么数据是响应式的：data中的数据
+      // 给对象新增属性不是响应的，如果希望是，可以通过this.$set
+      new Vue({
+        el: "#app",
+        data: {
+          count: 0,
+          person: {
+            name: "jack",
+            age: 18,
+          },
+          // 浅度冻结 Object.defineProperty
+          // 深度冻结 lodash
+          persons: Object.freeze([
+            { id: 1, name: "jack" },
+            { id: 2, name: "rose" },
+          ]),
+        },
+        methods: {
+          update1() {
+            // data中原有的属性都是响应式，给对象新添加的属性就不是响应式
+            // this.person.age++;
+            // this.person.sex = "男";
+            // this.$set(this.person, "sex", "男");
+            this.person = {
+              ...this.person,
+              sex: "男",
+            };
+          },
+          update2() {
+            this.persons.push({ id: 3, name: "tom" });
+            // this.persons[2] = { id: 3, name: "tom" };
+            // this.persons[0].name = "tom";
+          },
+        },
+        beforeCreate() {
+          this.a = 1;
+        },
+      });
+    </script>
+  </body>
+</html>

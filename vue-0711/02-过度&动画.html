@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      /* 显示到隐藏 leave */
+      .v-leave {
+        opacity: 1;
+      }
+      .v-leave-active {
+        transition: opacity 3s;
+      }
+      .v-leave-to {
+        opacity: 0;
+      }
+      /* 隐藏到显示：enter */
+      .v-enter {
+        opacity: 0;
+      }
+      .v-enter-active {
+        transition: opacity 3s;
+      }
+      .v-enter-to {
+        opacity: 1;
+      }
+
+      /* 加了类名 v换成类名 */
+      /* 显示到隐藏 leave */
+      .fade-leave {
+        opacity: 1;
+      }
+      .fade-leave-active {
+        transition: opacity 3s;
+      }
+      .fade-leave-to {
+        opacity: 0;
+      }
+      /* 隐藏到显示：enter */
+      .fade-enter {
+        opacity: 0;
+      }
+      .fade-enter-active {
+        transition: opacity 3s;
+      }
+      .fade-enter-to {
+        opacity: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <button @click="isShow = !isShow">按钮</button>
+      <transition>
+        <p v-show="isShow">过渡1</p>
+      </transition>
+      <!-- name="fade" 添加指定类名 -->
+      <transition name="fade">
+        <p v-show="isShow">过渡2</p>
+      </transition>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      /* 
+          1.vue动画的理解
+            操作css的transtion/animation
+            vue会给目标元素添加/移出特定的class
+          2.基本过度动画的编码
+            a.在目标元素外包裹 <transition name="xxx">
+            b.定义class样式
+              指定过渡样式：transition
+              指定隐藏时的样式： opacity.其他
+          3，过渡的类名
+            xxx-enter-active 显示
+            xxx-leave-active 隐藏
+            xxx-enter 隐藏时的样式 
+        */
+
+      new Vue({
+        el: "#app",
+        data: {
+          isShow: true,
+        },
+      });
+    </script>
+  </body>
+</html>

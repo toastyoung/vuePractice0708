@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p v-text="msg"></p>
+      <p v-upper-case="msg"></p>
+      <p v-lower-case="msg"></p>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+      /*
+         1.注册全局指令
+         Vue.directive('指令名',function(el,binding){
+           el.innerHTML = binding.value.toUpperCase()  转大写
+         })
+
+         2.注册局部指令
+          directives : {
+            '指令名 : {
+                bind (el, binding) {
+                  el.innerHTML = binding.value.toupperCase()
+                }
+            }
+          }
+
+          3.使用指令
+          v-指令名 = "xxx"
+       */
+      Vue.directive("upper-case", function (el, binding) {
+        el.textContent = binding.value.toUpperCase();
+      });
+
+      new Vue({
+        el: "#app",
+        data: {
+          msg: "CocaCole",
+        },
+        directives: {
+          "lower-case": {
+            bind(el, binding) {
+              el.textContent = binding.value.toLowerCase();
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

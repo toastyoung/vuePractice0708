@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <p>{{ count }}</p>
+      <button @click="count++">按钮</button>
+      <button @click="goDie">goDie</button>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+      /*
+        1. vue对象的生命周期
+          1). 初始化显示
+            * beforeCreate()
+            * created()
+            * beforeMount()
+            * mounted()
+          2). 更新状态
+            * beforeUpdate()
+            * updated()
+          3). 销毁vue实例: vm.$destroy()
+            * beforeDestroy()
+            * destroyed()
+        2. 常用的生命周期方法
+          created()/mounted(): 发送ajax请求, 启动定时器等异步任务
+          beforeDestory(): 做收尾工作, 如: 清除定时器
+      */
+
+      new Vue({
+        el: "#app",
+        data: {
+          count: 0,
+        },
+        methods: {
+          goDie() {
+            this.$destroy();
+          },
+        },
+
+        // 定义生命周期函数
+        // 1.初始化阶段 挂载阶段
+        beforeCreate() {
+          // 在数据代理之前触发 所以不能直接访问数据
+          // 数据代理：将data methods computed中的数据挂载在this上 可以通过this直接使用
+          console.log(this.count);
+          console.log("beforeCreate");
+        },
+        created() {
+          console.log(this.count);
+          console.log("created");
+        },
+        beforeMount() {
+          console.log(this.count);
+          console.log("beforeMount");
+        },
+        mounted() {
+          // 在挂在之后 页面渲染完成 DOM元素生成了 可以操作DOM
+          // 发送请求 设置定时器 绑定自定义事件 原生DOM事件等一次性任务
+          // 请求在mounted发送 而不是created的原因:
+          //      1.不会影响首屏渲染速度
+          //      2.如果要操作DOM 只能在这里操作
+
+          console.log(this.count);
+          console.log("mounted");
+        },
+
+        // 2.更新阶段
+        beforeUpdate() {
+          console.log(this.count);
+          console.log("beforeUpdate");
+        },
+        updated() {
+          console.log(this.count);
+          console.log("updated");
+        },
+
+        // 3.卸载阶段
+        beforeDestroy() {
+          // 收尾工作 清除定时器 解绑事件
+          console.log("beforeDestroy");
+        },
+        destroyed() {
+          console.log("destroyed");
+        },
+      });
+    </script>
+  </body>
+</html>

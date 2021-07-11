@@ -21,36 +21,35 @@
     <script src="../js/vue.js"></script>
     <script>
       new Vue({
-        el: '#app',
+        el: "#app",
         data: {
           persons: [
-            { id: 1, name: 'jude', age: 20 },
-            { id: 2, name: 'bob', age: 19 },
-            { id: 3, name: 'paul', age: 33 },
-            { id: 4, name: 'jenne', age: 22 },
+            { id: 1, name: "jude", age: 20 },
+            { id: 2, name: "bob", age: 19 },
+            { id: 3, name: "paul", age: 33 },
+            { id: 4, name: "jenne", age: 22 },
           ],
-          nameSearch: '',
-          orderType: 'default',
+          nameSearch: "",
+          orderType: "default",
         },
         computed: {
           updatePersons() {
-            const { persons, nameSearch, orderType } = this
+            const { persons, nameSearch, orderType } = this;
 
             const filterPersons = persons.filter((person) => {
-              return person.name.indexOf(nameSearch) !== -1
-            })
-
-            if (orderType === 'default') {
-              return filterPersons
+              return person.name.indexOf(nameSearch) !== -1;
+            });
+            if (orderType === "default") {
+              return filterPersons;
             }
 
             const sortPersons = filterPersons.sort((a, b) => {
-              return orderType === 'asc' ? a.age - b.age : b.age - a.age
-            })
-            return sortPersons
+              return orderType === "asc" ? a.age - b.age : b.age - a.age;
+            });
+            return sortPersons;
           },
         },
-      })
+      });
     </script>
   </body>
 </html>
