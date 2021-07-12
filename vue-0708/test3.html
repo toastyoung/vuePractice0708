@@ -38,7 +38,7 @@
           green:!isRed
       }"
       >
-        动态类名2
+        动态类名test
       </p>
       <p :class="[isRed? 'red':'green','xxx','yyy']">动态类名3</p>
       <button @click="changeColor">red&&grren</button>
@@ -64,17 +64,17 @@
           如果样式比较简单用style
       */
       new Vue({
-        el: '#app',
+        el: "#app",
         data: {
           isRed: true,
           size: 12,
         },
         methods: {
           changeColor() {
-            this.isRed = !this.isRed
+            this.isRed = !this.isRed;
           },
         },
-      })
+      });
     </script>
   </body>
 </html>
